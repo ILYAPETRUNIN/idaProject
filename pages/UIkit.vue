@@ -4,6 +4,7 @@
       <BaseInput v-model="name" name="Наименование товара" placeholder="Введите наименование товара" />
       <BaseInput error="Ошибка" name="Наименование товара" placeholder="Введите наименование товара" required />
       <BaseInput textarea name="Наименование товара" placeholder="Описание товара" />
+      <BaseSelect placeholder='По умолчанию'/>
       <BaseBtn>Добавить товар</BaseBtn>
       <BaseBtn disabled>
         Добавить товар

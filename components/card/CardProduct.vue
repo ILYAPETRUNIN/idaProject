@@ -2,8 +2,12 @@
   <div class="card-product light-card">
     <img class="card-product__img" :src="item.img">
     <div class="card-product__info">
-      <h4 class="card-product__name">{{ item.name }}</h4>
-      <p class="card-product__description">{{ item.description }}</p>
+      <h4 class="card-product__name">
+        {{ item.name }}
+      </h4>
+      <p class="card-product__description">
+        {{ item.description }}
+      </p>
       <p class="card-product__price">
         {{ item.price }}
         <span> руб.</span>
@@ -52,6 +56,7 @@ export default {
   }
   &__price{
     @include setFont(24px,600);
+    margin-bottom: 8px;
   }
 }
 </style>

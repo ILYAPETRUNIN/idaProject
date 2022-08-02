@@ -2,7 +2,7 @@
   <div v-on-clickaway="unfocus" :class="getClass" class="base-input">
     <div v-if="name" class="base-input__name">
       {{ name }}
-      <div class="base-input__badge"></div>
+      <div class="base-input__badge" />
     </div>
     <div class="base-input__wrapper light-card" @click="focus">
       <slot name="icon-prefix" />
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="base-input__notify">
-      <span>{{error}}</span>
+      <span>{{ error }}</span>
     </div>
   </div>
 </template>
@@ -140,8 +140,8 @@ export default {
   }
   &__wrapper{
     @include flexy(space-between,center);
-    @include setSize(100%,36px);
-    padding:10px 16px;
+    height:36px;
+    padding:0px 16px;
     cursor:text;
     transition:all 0.5s;
     border: 1px solid;

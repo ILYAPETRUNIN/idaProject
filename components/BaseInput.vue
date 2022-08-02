@@ -6,7 +6,8 @@
     </div>
     <div class="base-input__wrapper light-card" @click="focus">
       <slot name="icon-prefix" />
-      <input
+      <component
+        :is="textarea ? 'textarea': 'input'"
         ref="input"
         v-model="inputVal"
         :placeholder="placeholder"
@@ -16,7 +17,7 @@
         :class="{'base-input__input_password':visible}"
         class="base-input__input"
         @focus="focus"
-      >
+      />
       <div class="base-input__suffix" @click="clickSuffix">
         <slot name="icon-suffix">
           <svg-icon v-if="type=='password'" class="base-input__icon" :name="`eye${visible?&quot;_closed&quot;:&quot;&quot;}`" />
@@ -58,6 +59,9 @@ export default {
     },
     required: {
       type: Boolean
+    },
+    textarea: {
+      type: Boolean
     }
   },
   data () {
@@ -69,6 +73,7 @@ export default {
   computed: {
     getClass () {
       return [
+        this.textarea ? 'textarea' : '',
         this.disabled ? 'disabled' : '',
         (this.focused && !this.disabled) ? 'focused' : '',
         (this.error && !this.disabled) ? 'error' : ''
@@ -152,6 +157,19 @@ export default {
     margin-top: 4px;
     color:scotch-color($theme-light,'danger');
     @include setFont(8px,400);
+  }
+}
+
+.textarea{
+  .base-input{
+    &__input{
+      height: 100%;
+      resize: none;
+    }
+    &__wrapper{
+      height:108px;
+      padding:10px 16px;
+    }
   }
 }
 

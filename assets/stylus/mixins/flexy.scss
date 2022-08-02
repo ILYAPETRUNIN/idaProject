@@ -1,0 +1,10 @@
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+@mixin flexy($justify:flex-start, $align:center, $wrap :nowrap, $dir :row) {
+  display: flex;
+  flex-flow: $dir $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}

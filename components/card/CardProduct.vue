@@ -13,11 +13,17 @@
         <span> руб.</span>
       </p>
     </div>
+    <BaseBtn class="card-product__btn" icon color="danger">
+      <DeleteSvg />
+    </BaseBtn>
   </div>
 </template>
 
 <script>
+import DeleteSvg from '~/assets/icons/delete.svg?inline'
+
 export default {
+  components: { DeleteSvg },
   props: {
     item: {
       type: Object,
@@ -38,7 +44,15 @@ export default {
 <style lang="scss" scoped>
 .card-product{
   @include flexy(center,center,nowrap,column);
+  position:relative;
   width: 332px;
+  &:hover{
+    .card-product{
+      &__btn{
+        display:flex
+      }
+    }
+  }
   &__img{
     height:200px
   }
@@ -57,6 +71,12 @@ export default {
   &__price{
     @include setFont(24px,600);
     margin-bottom: 8px;
+  }
+  &__btn{
+    display:none;
+    position:absolute;
+    top:-8px;
+    right: -8px;
   }
 }
 </style>

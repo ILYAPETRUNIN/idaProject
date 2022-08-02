@@ -6,22 +6,28 @@
     </div>
     <div class="base-input__wrapper light-card" @click="focus">
       <slot name="icon-prefix" />
-      <component
-        :is="textarea ? 'textarea': 'input'"
+      <input
+        v-if="!textarea"
         ref="input"
         v-model="inputVal"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
-        :type="visible ? &quot;password&quot;:&quot;text&quot;"
-        :class="{'base-input__input_password':visible}"
+        class="base-input__input"
+        @focus="focus"
+      />
+      <textarea
+        v-if="textarea"
+        ref="input"
+        v-model="inputVal"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
         class="base-input__input"
         @focus="focus"
       />
       <div class="base-input__suffix" @click="clickSuffix">
-        <slot name="icon-suffix">
-          <svg-icon v-if="type=='password'" class="base-input__icon" :name="`eye${visible?&quot;_closed&quot;:&quot;&quot;}`" />
-        </slot>
+        <slot name="suffix" />
       </div>
     </div>
     <div class="base-input__notify">
@@ -66,13 +72,13 @@ export default {
   },
   data () {
     return {
-      focused: false,
-      visible: false
+      focused: false
     }
   },
   computed: {
     getClass () {
       return [
+        this.readonly ? 'readonly' : '',
         this.textarea ? 'textarea' : '',
         this.disabled ? 'disabled' : '',
         (this.focused && !this.disabled) ? 'focused' : '',
@@ -101,7 +107,7 @@ export default {
       this.$refs.input.blur()
     },
     clickSuffix () {
-
+      this.$emit('clickSuffix')
     }
   }
 }
@@ -133,6 +139,9 @@ export default {
       font-size:12px;
       font-weight: 400;
     }
+    &:read-only{
+      cursor:inherit;
+    }
   }
   &__suffix{
     @include flexy(center,center)
@@ -147,10 +156,10 @@ export default {
     @include flexy(space-between,center);
     height:36px;
     padding:0px 16px;
-    cursor:text;
     transition:all 0.5s;
     border: 1px solid;
     border-color: transparent;
+    cursor: text
   }
   &__notify{
     height: 10px;
@@ -169,6 +178,14 @@ export default {
     &__wrapper{
       height:108px;
       padding:10px 16px;
+    }
+  }
+}
+
+.readonly{
+  .base-input{
+    &__wrapper{
+      cursor: inherit
     }
   }
 }

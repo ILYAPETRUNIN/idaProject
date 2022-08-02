@@ -1,0 +1,3 @@
+@function scotch-color($theme,$key: 'primary') {
+  @return map-get($theme, $key);
+}

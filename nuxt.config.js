@@ -25,9 +25,9 @@ export default {
   ],
   styleResources: {
     scss: [
-     './assets/scss/index.scss', // путь к вашему файлу
-    ],
-   },
+      './assets/scss/index.scss' // путь к вашему файлу
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -40,7 +40,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources',
+    '@nuxtjs/style-resources'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -1,0 +1,14 @@
+@import '../vars/themes.scss';
+@import '../functions/themes.scss';
+
+.light-card{
+  background: scotch-color($theme-light,'primary');
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
+
+.light-input{
+  background: scotch-color($theme-light,'primary');
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}

@@ -1,3 +1,7 @@
 @import './mixins/index.scss';
 @import './vars/index.scss';
 @import './functions/index.scss';
+
+@include font-face(SourceSansPro, '~assets/fonts/SourceSansPro/SourceSansPro-Regular', 400, normal, ttf);
+@include font-face(SourceSansPro, '~assets/fonts/SourceSansPro/SourceSansPro-SemiBold', 600, normal, ttf);
+@include font-face(Inter, '~assets/fonts/Inter/Inter-SemiBold', 600, normal, ttf);

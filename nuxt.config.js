@@ -30,13 +30,13 @@ export default {
   },
   svg: {
     vueSvgLoader: {
-        // vue-svg-loader options
+      // vue-svg-loader options
     },
     svgSpriteLoader: {
-        // svg-sprite-loader options
+      // svg-sprite-loader options
     },
     fileLoader: {
-        // file-loader options
+      // file-loader options
     }
   },
 
@@ -52,7 +52,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
-    "@nuxtjs/svg"
+    '@nuxtjs/svg'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

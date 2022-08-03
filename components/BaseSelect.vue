@@ -5,7 +5,7 @@
         <ArrowSvg class="base-select__icon" :class="{&quot;base-select__icon_rotate&quot;:isShow}" />
       </template>
     </BaseInput>
-    <ul v-if="isShow" class="base-select__menu light-card">
+    <ul  v-if="isShow" class="base-select__menu light-card">
       <li v-for="(item,index) in items" :key="index" class="base-select__item" @click="setItem(item)">
         {{ item }}
       </li>
@@ -22,7 +22,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => { return ['По убыванию', 'По возростанию'] }
+      default: () => { return ['Убывание', 'Возростание'] }
     },
     placeholder: {
       type: String
@@ -52,6 +52,7 @@ export default {
 <style lang="scss" scoped>
 .base-select{
   position:relative;
+  font-size:12px;
   &__input{
     cursor: pointer;
   }
@@ -61,6 +62,7 @@ export default {
     width:100%;
     top:26px;
     padding: 10px 0px;
+    z-index:9999
   }
   &__icon{
     transition: all 0.5s;

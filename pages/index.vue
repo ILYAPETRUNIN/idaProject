@@ -1,7 +1,7 @@
 <template>
   <div class="page-products">
     <div class="page-products__items">
-      <CardProduct class="page-products__item" v-for='n in 9' :key="n"/>
+      <CardProduct v-for="n in 9" :key="n" class="page-products__item" />
     </div>
   </div>
 </template>

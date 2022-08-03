@@ -3,7 +3,14 @@
     <BaseInput v-model="$v.name.$model" :error="($v.name.$dirty && !$v.name.required) ? getError('required'): ''" required name="Наименование товара" placeholder="Введите наименование товара" />
     <BaseInput v-model="description" textarea name="Описание товара" placeholder="Введите описание товара" />
     <BaseInput v-model="$v.img.$model" :error="($v.img.$dirty && !$v.img.required) ? getError('required'):''" required name="Ссылка на изображение товара" placeholder="Введите наименование товара" />
-    <BaseInput v-model="$v.price.$model" :error="($v.price.$dirty && !$v.price.required) ? getError('required'):''" required name="Цена товара" placeholder="Введите цену" />
+    <BaseInput
+      v-model="$v.price.$model"
+      type="number"
+      :error="($v.price.$dirty && !$v.price.required) ? getError('required'):''"
+      required
+      name="Цена товара"
+      placeholder="Введите цену"
+    />
     <BaseBtn :disabled="$v.$invalid" type="submit">
       Добавить товар
     </BaseBtn>

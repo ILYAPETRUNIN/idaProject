@@ -5,7 +5,7 @@
         <ArrowSvg class="base-select__icon" :class="{&quot;base-select__icon_rotate&quot;:isShow}" />
       </template>
     </BaseInput>
-    <ul  v-if="isShow" class="base-select__menu light-card">
+    <ul v-if="isShow" class="base-select__menu light-card">
       <li v-for="(item,index) in items" :key="index" class="base-select__item" @click="setItem(item)">
         {{ item }}
       </li>

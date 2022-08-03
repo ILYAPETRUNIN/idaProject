@@ -15,7 +15,7 @@
         :readonly="readonly"
         class="base-input__input"
         @focus="focus"
-      />
+      >
       <textarea
         v-if="textarea"
         ref="input"
@@ -30,7 +30,7 @@
         <slot name="suffix" />
       </div>
     </div>
-    <div class="base-input__notify">
+    <div class="base-input__notify error">
       <span>{{ error }}</span>
     </div>
   </div>

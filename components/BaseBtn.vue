@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="disabled" :class="getClasses" class="base-btn" @click="click">
+  <button :disabled="disabled" :type="type" :class="getClasses" class="base-btn" @click="click">
     <slot />
   </button>
 </template>
@@ -18,6 +18,9 @@ export default {
     },
     icon: {
       type: Boolean
+    },
+    type: {
+      type: String
     }
   },
   computed: {

@@ -1,6 +1,6 @@
 <template>
   <div v-on-clickaway="hide" class="base-select" @click="toogle">
-    <BaseInput :placeholder="placeholder" v-model="select" readonly class="base-select__input">
+    <BaseInput v-model="select" :placeholder="placeholder" readonly class="base-select__input">
       <template #suffix>
         <ArrowSvg class="base-select__icon" :class="{&quot;base-select__icon_rotate&quot;:isShow}" />
       </template>

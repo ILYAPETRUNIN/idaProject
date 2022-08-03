@@ -26,6 +26,7 @@ export default {
   &__form{
     width:332px;
     padding:24px;
+    margin-right:16px;
   }
   &__sort{
     width:125px;

@@ -1,6 +1,8 @@
 <template>
   <div class="page-products">
-    <CardProduct class="page-products__item" v-for='n in 10' :key="n"/>
+    <div class="page-products__items">
+      <CardProduct class="page-products__item" v-for='n in 9' :key="n"/>
+    </div>
   </div>
 </template>
 
@@ -16,9 +18,12 @@ export default {
 <style lang="scss" scoped>
 .page-products{
   width:100%;
-  @include flexy(flex-end,flex-start,wrap);
-  @include lg-and-down{
-    justify-content:center
+  @include flexy(flex-end,flex-start);
+  &__items{
+    @include flexy(flex-start,flex-start,wrap);
+    @include lg-and-down{
+      justify-content:center
+    }
   }
   &__item{
     &:not(:last-child){

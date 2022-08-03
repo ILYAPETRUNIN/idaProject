@@ -3,7 +3,8 @@
     <img class="card-product__img" :src="item.img">
     <div class="card-product__info">
       <h4 class="card-product__name">
-        {{ item.name }}
+        {{ item.name.substr(0,24) }}
+        <span v-if="item.name.length>24">...</span>
       </h4>
       <p class="card-product__description">
         {{ item.description }}
@@ -13,7 +14,7 @@
         <span> руб.</span>
       </p>
     </div>
-    <BaseBtn class="card-product__btn" icon color="danger">
+    <BaseBtn class="card-product__btn" icon color="danger" @click="deleteItem">
       <DeleteSvg />
     </BaseBtn>
   </div>
@@ -26,16 +27,12 @@ export default {
   components: { DeleteSvg },
   props: {
     item: {
-      type: Object,
-      default: () => {
-        return {
-          id: 0,
-          name: 'Наименование товара',
-          description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          price: '10000',
-          img: 'https://avatars.mds.yandex.net/get-mpic/4249638/img_id6129126127483725327.jpeg/orig'
-        }
-      }
+      type: Object
+    }
+  },
+  methods: {
+    deleteItem () {
+      this.$emit('delete')
     }
   }
 }
@@ -43,9 +40,10 @@ export default {
 
 <style lang="scss" scoped>
 .card-product{
-  @include flexy(center,center,nowrap,column);
+  @include flexy(flex-start,flex-start,nowrap,column);
   position:relative;
   width: 332px;
+  height:423px;
   &:hover{
     .card-product{
       &__btn{
@@ -57,7 +55,8 @@ export default {
     height:200px
   }
   &__info{
-    padding:16px;
+    overflow:hidden;
+    margin:16px;
     color:scotch-color($theme-light,'text-dark');
   }
   &__name{
@@ -67,6 +66,7 @@ export default {
   &__description{
     @include setFont(16px,400);
     margin-bottom: 32px;
+    height: 80px;
   }
   &__price{
     @include setFont(24px,600);

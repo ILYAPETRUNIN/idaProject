@@ -5,7 +5,7 @@
       <BaseSelect class="layout-products__sort" placeholder="По умолчанию" />
     </div>
     <div class="layout-products__body">
-      <FormAddProduct class="layout-products__form light-card" />
+      <FormAddProduct class="layout-products__form light-card" @submit="createProduct" />
       <Nuxt />
     </div>
   </div>
@@ -13,6 +13,11 @@
 
 <script>
 export default {
+  methods: {
+    createProduct (product) {
+      this.$store.dispatch('products/create', product)
+    }
+  }
 }
 </script>
 

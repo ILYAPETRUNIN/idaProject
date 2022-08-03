@@ -1,7 +1,7 @@
 <template>
   <div class="page-products">
     <div class="page-products__items">
-      <CardProduct v-for="n in 9" :key="n" class="page-products__item" />
+      <CardProduct v-for="item in getProducts" :key="item.id" :item="item" class="page-products__item" @delete="deleteProduct(item.id)" />
     </div>
   </div>
 </template>
@@ -11,14 +11,24 @@ import CardProduct from '~/components/card/CardProduct.vue'
 
 export default {
   name: 'IndexPage',
-  components: { CardProduct }
+  components: { CardProduct },
+  computed: {
+    getProducts () {
+      return this.$store.getters['products/getList']
+    }
+  },
+  methods: {
+    deleteProduct (id) {
+      this.$store.dispatch('products/delete', id)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .page-products{
   width:100%;
-  @include flexy(flex-end,flex-start);
+  @include flexy(flex-start,flex-start);
   &__items{
     @include flexy(flex-start,flex-start,wrap);
     @include lg-and-down{

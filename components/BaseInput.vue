@@ -14,6 +14,7 @@
         :disabled="disabled"
         :readonly="readonly"
         class="base-input__input"
+        @keypress="checkKey"
         @focus="focus"
       >
       <textarea
@@ -38,6 +39,7 @@
 
 <script>
 import { directive as onClickaway } from 'vue-clickaway'
+import { formatPrice, priceToNumber } from '@/helpers/formating.js'
 
 export default {
   directives: { onClickaway },
@@ -46,7 +48,7 @@ export default {
       type: String
     },
     value: {
-      type: String
+      required: true
     },
     type: {
       type: String
@@ -88,11 +90,18 @@ export default {
 
     inputVal: {
       get () {
+        if (this.onlyNumber) { return formatPrice(this.value) }
         return this.value
       },
       set (value) {
-        this.$emit('input', value)
+        let formatingValue = value
+        if (this.onlyNumber) { formatingValue = priceToNumber(value) }
+        this.$emit('input', formatingValue)
       }
+    },
+
+    onlyNumber () {
+      return this.type === 'number'
     }
   },
 
@@ -108,6 +117,13 @@ export default {
     },
     clickSuffix () {
       this.$emit('clickSuffix')
+    },
+    checkKey (event) {
+      if (this.onlyNumber) {
+        if (!event.key.match(/[0-9]/)) {
+          event.preventDefault()
+        }
+      }
     }
   }
 }
@@ -141,6 +157,10 @@ export default {
     }
     &:read-only{
       cursor:inherit;
+    }
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
   &__suffix{

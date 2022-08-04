@@ -32,7 +32,9 @@
       </div>
     </div>
     <div class="base-input__notify error">
-      <div v-if="error" class="shake-horizontal">{{ error }}</div>
+      <div v-if="error" class="shake-horizontal">
+        {{ error }}
+      </div>
     </div>
   </div>
 </template>

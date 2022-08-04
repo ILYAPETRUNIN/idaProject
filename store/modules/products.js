@@ -15,7 +15,7 @@ export default {
   mutations: {
     addProduct (state, product) {
       const id = uuidv4()
-      state.list.push({ id, ...product })
+      state.list.unshift({ id, ...product })
       setLocalStorage(state.list)
     },
     deleteProduct (state, id) {

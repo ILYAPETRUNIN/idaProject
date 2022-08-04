@@ -20,7 +20,10 @@ export default {
       type: Boolean
     },
     type: {
-      type: String
+      type: String,
+      validator (value) {
+        return ['submit', ''].includes(value)
+      }
     }
   },
   computed: {

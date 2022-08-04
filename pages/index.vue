@@ -20,6 +20,7 @@ export default {
   methods: {
     deleteProduct (id) {
       this.$store.dispatch('products/delete', id)
+      this.$store.dispatch('showSnackbar', { text: 'Товар удалён', type: 'danger', timeout: 5000 })
     }
   }
 }

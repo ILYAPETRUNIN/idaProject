@@ -8,6 +8,9 @@
       <FormAddProduct class="layout-products__form light-card" @submit="createProduct" />
       <Nuxt />
     </div>
+    <transition-group name="list-complete" class="layout-products__snackbar">
+      <base-snackbar class="list-complete-item" v-for="item in getSnackbars" :key="item.id" :type="item.type" :text="item.text" />
+    </transition-group>
   </div>
 </template>
 
@@ -18,9 +21,15 @@ export default {
       sortItems: ['По цене min', 'По цене max', 'По наименованию']
     }
   },
+  computed: {
+    getSnackbars () {
+      return this.$store.getters.getSnackbars
+    }
+  },
   methods: {
     createProduct (product) {
       this.$store.dispatch('products/create', product)
+      this.$store.dispatch('showSnackbar', { text: 'Товар добавлен', type: 'success', timeout: 5000 })
     },
     sort (type) {
       this.$store.dispatch('products/sort', type)
@@ -49,6 +58,10 @@ export default {
   &__body{
     width:100%;
     @include flexy(space-between,flex-start)
+  }
+  &__snackbar{
+    @include flexy(center,center);
+    width:100%;
   }
 }
 </style>

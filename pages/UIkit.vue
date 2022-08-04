@@ -12,17 +12,17 @@
       <BaseBtn icon color="danger">
         <DeleteSvg />
       </BaseBtn>
-      <CardProduct />
+      <BaseSnackbar type="danger" text="Ошибка" />
+      <BaseSnackbar type="success" text="Успешно" />
     </div>
   </div>
 </template>
 
 <script>
 import DeleteSvg from '~/assets/icons/delete.svg?inline'
-import CardProduct from '@/components/card/CardProduct.vue'
 
 export default {
-  components: { DeleteSvg, CardProduct },
+  components: { DeleteSvg },
   data () {
     return {
       name: ''

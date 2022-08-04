@@ -1,6 +1,8 @@
 <template>
   <div class="card-product light-card">
-    <img class="card-product__img" :src="item.img">
+    <div class="card-product__wrapper">
+      <img class="card-product__img" :src="item.img">
+    </div>
     <div class="card-product__info">
       <h4 class="card-product__name">
         {{ item.name.substr(0,24) }}
@@ -50,6 +52,10 @@ export default {
         display:flex
       }
     }
+  }
+  &__wrapper{
+    @include flexy(center,center);
+    width:100%
   }
   &__img{
     height:200px

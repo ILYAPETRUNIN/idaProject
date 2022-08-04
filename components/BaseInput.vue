@@ -2,7 +2,7 @@
   <div v-on-clickaway="unfocus" :class="getClass" class="base-input">
     <div v-if="name" class="base-input__name">
       {{ name }}
-      <div class="base-input__badge" />
+      <div v-if="required" class="base-input__badge" />
     </div>
     <div class="base-input__wrapper light-card" @click="focus">
       <slot name="icon-prefix" />

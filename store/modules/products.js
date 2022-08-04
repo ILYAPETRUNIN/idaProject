@@ -1,26 +1,29 @@
-import { uuid } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid'
+import { getLocalStorage, setLocalStorage } from '../storeLocal'
+
+const clone = require('lodash/clone')
+
 export default {
   namespaced: true,
   state: () => (
     {
       filter: [],
-      list: [{
-        id: 0,
-        name: 'Наименование товара',
-        description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        price: '10000',
-        img: 'https://avatars.mds.yandex.net/get-mpic/4249638/img_id6129126127483725327.jpeg/orig'
-      }
-      ]
+      list: getLocalStorage() || [],
+      sort: ''
     }
   ),
   mutations: {
     addProduct (state, product) {
-      const id = uuid()
+      const id = uuidv4()
       state.list.push({ id, ...product })
+      setLocalStorage(state.list)
     },
     deleteProduct (state, id) {
       state.list = state.list.filter(item => item.id !== id)
+      setLocalStorage(state.list)
+    },
+    setSort (state, type) {
+      state.sort = type
     }
   },
   actions: {
@@ -29,11 +32,38 @@ export default {
     },
     delete ({ commit }, id) {
       commit('deleteProduct', id)
+    },
+    sort ({ commit }, type) {
+      commit('setSort', type)
     }
   },
   getters: {
     getList (state) {
-      return state.list
+      let list = clone(state.list)
+      switch (state.sort) {
+        case 'По наименованию':
+          list = list.sort((a, b) => {
+            if (a.name > b.name) { return -1 }
+            if (a.name < b.name) { return 1 }
+            return 0
+          })
+          break
+        case 'По цене min':
+          list = list.sort((a, b) => {
+            if (a.price < b.price) { return -1 }
+            if (a.price > b.price) { return 1 }
+            return 0
+          })
+          break
+        case 'По цене max':
+          list = list.sort((a, b) => {
+            if (a.price > b.price) { return -1 }
+            if (a.price < b.price) { return 1 }
+            return 0
+          })
+          break
+      }
+      return list
     }
   }
 }

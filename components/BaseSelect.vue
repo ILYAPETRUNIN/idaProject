@@ -6,7 +6,7 @@
       </template>
     </BaseInput>
     <ul v-if="isShow" class="base-select__menu light-card">
-      <li v-for="(item,index) in items" :key="index" class="base-select__item" @click="setItem(item)">
+      <li v-for="(item,index) in getItems" :key="index" class="base-select__item" @click="setItem(item)">
         {{ item }}
       </li>
     </ul>
@@ -21,8 +21,7 @@ export default {
   components: { ArrowSvg },
   props: {
     items: {
-      type: Array,
-      default: () => { return ['Убывание', 'Возростание'] }
+      type: Array
     },
     placeholder: {
       type: String
@@ -34,6 +33,11 @@ export default {
       isShow: false
     }
   },
+  computed: {
+    getItems () {
+      return ['По умолчанию', ...this.items]
+    }
+  },
   methods: {
     toogle () {
       this.isShow = !this.isShow
@@ -42,8 +46,10 @@ export default {
       this.isShow = false
     },
     setItem (item) {
-      this.$emit('input', item)
-      this.select = item
+      let select = item
+      if (item === 'По умолчанию') { select = '' }
+      this.$emit('input', select)
+      this.select = select
     }
   }
 

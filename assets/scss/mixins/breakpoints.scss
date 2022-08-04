@@ -18,7 +18,7 @@ $xl:1704px;
 }
 
 @mixin ms-only {
-  @media screen and ((min-width: $ms) and (max-width: $ms)){
+  @media screen and (min-width: $ms) and (max-width: $ms){
       @content;
   }
 }
@@ -36,7 +36,7 @@ $xl:1704px;
 }
 
 @mixin sm-only {
-  @media screen and ((min-width: $sm) and (max-width: $sm)){
+  @media screen and (min-width: $sm) and (max-width: $sm){
       @content;
   }
 }
@@ -54,7 +54,7 @@ $xl:1704px;
 }
 
 @mixin md-only {
-  @media screen and ((min-width: $md) and (max-width: $md)){
+  @media screen and (min-width: $md) and (max-width: $md){
       @content;
   }
 }
@@ -72,7 +72,7 @@ $xl:1704px;
 }
 
 @mixin lg-only {
-  @media screen and ((min-width: $lg) and (max-width: $lg)){
+  @media screen and (min-width: $lg) and (max-width: $lg){
       @content;
   }
 }

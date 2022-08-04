@@ -1,8 +1,8 @@
 <template>
   <div class="page-products">
-    <div class="page-products__items">
-      <CardProduct v-for="item in getProducts" :key="item.id" :item="item" class="page-products__item" @delete="deleteProduct(item.id)" />
-    </div>
+    <transition-group name="list-complete" class="page-products__items">
+      <CardProduct v-for="item in getProducts" :key="item.id" :item="item" class="page-products__item list-complete-item" @delete="deleteProduct(item.id)" />
+    </transition-group>
   </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .page-products{
   width:100%;
   @include flexy(flex-start,flex-start);

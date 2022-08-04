@@ -1,7 +1,8 @@
 <template>
   <div class="card-product light-card">
     <div class="card-product__wrapper">
-      <img class="card-product__img" :src="item.img">
+      <img :class="{&quot;card-product__img_loading&quot;:loading}" class="card-product__img" :src="item.img" @load="loading=false">
+      <Loader v-if="loading" />
     </div>
     <div class="card-product__info">
       <h4 class="card-product__name">
@@ -12,7 +13,7 @@
         {{ item.description }}
       </p>
       <p class="card-product__price">
-        {{ item.price }}
+        {{ formatPrice(item.price) }}
         <span> руб.</span>
       </p>
     </div>
@@ -24,6 +25,7 @@
 
 <script>
 import DeleteSvg from '~/assets/icons/delete.svg?inline'
+import { formatPrice } from '@/helpers/formating.js'
 
 export default {
   components: { DeleteSvg },
@@ -32,7 +34,13 @@ export default {
       type: Object
     }
   },
+  data () {
+    return {
+      loading: true
+    }
+  },
   methods: {
+    formatPrice,
     deleteItem () {
       this.$emit('delete')
     }
@@ -47,18 +55,24 @@ export default {
   width: 332px;
   height:423px;
   &:hover{
+    transform:scale(1.05);
     .card-product{
       &__btn{
-        display:flex
+        display:flex;
       }
     }
   }
   &__wrapper{
     @include flexy(center,center);
-    width:100%
+    width:100%;
+    height:200px;
   }
   &__img{
-    height:200px
+    height:100%;
+    width:100%;
+    &_loading{
+      display:none;
+    }
   }
   &__info{
     overflow:hidden;

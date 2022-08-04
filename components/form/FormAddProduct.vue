@@ -19,7 +19,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import errorList from '@/models/ErrorList'
+import getError from '@/models/ErrorList'
 
 export default {
   data () {
@@ -43,9 +43,7 @@ export default {
         this.$emit('submit', { name, description, img, price })
       }
     },
-    getError (type) {
-      return errorList.get(type)
-    }
+    getError
   }
 }
 </script>

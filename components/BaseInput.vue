@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="base-input__notify error">
-      <span>{{ error }}</span>
+      <div v-if="error" class="shake-horizontal">{{ error }}</div>
     </div>
   </div>
 </template>
@@ -179,7 +179,8 @@ export default {
     transition:all 0.5s;
     border: 1px solid;
     border-color: transparent;
-    cursor: text
+    cursor: text;
+    transition:all 0.5s;
   }
   &__notify{
     height: 10px;
@@ -206,6 +207,14 @@ export default {
   .base-input{
     &__wrapper{
       cursor: inherit
+    }
+  }
+}
+
+.focused{
+  .base-input{
+    &__wrapper{
+      border-color:scotch-color($theme-light,'success');
     }
   }
 }
